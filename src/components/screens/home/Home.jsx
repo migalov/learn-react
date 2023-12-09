@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CreateUserForm from './create-user-form/CreateUserForm'
 import UserItem from './user-item/UserItem'
 import { users as usersData } from './users.data'
@@ -9,7 +9,13 @@ const Home = () => {
   // const filteredUsers = useMemo(
   //   () => users.filter(user => user.balance > 1000), []
   // );
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("https://localhost:3000/users")
+      const data = await response.json()
+      setUsers(data);
+    }
+  }, [])
   const [users, setUsers] = useState(usersData);
 
   return (
