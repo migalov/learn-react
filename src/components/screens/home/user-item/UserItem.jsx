@@ -1,5 +1,7 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../Home.module.scss'
+
+
 const UserItem = ({ user }) => {
   return (
     <div key={user.id} className={styles.item}>
@@ -20,7 +22,7 @@ const UserItem = ({ user }) => {
           currency: 'USD',
           currencyDisplay: 'narrowSymbol'
         }).format(user.balance)}</p>
-        <button>Read more</button>
+        <Link to={`/user/${user.id}`} className="btn">Read more</Link>
       </div>
     </div>
   )
