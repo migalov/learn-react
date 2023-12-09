@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import CreateUserForm from './create-user-form/CreateUserForm'
 import UserItem from './user-item/UserItem'
 import { users as usersData } from './users.data'
-import axios from 'axios'
+import { UserService } from '../../../services/user.service'
 
 const Home = () => {
 
@@ -12,8 +12,8 @@ const Home = () => {
   // );
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("https://localhost:3000/users")
-      setUsers(response.data);
+      const data = await UserService.getAll();
+      setUsers(data)
     }
   }, [])
   const [users, setUsers] = useState(usersData);
